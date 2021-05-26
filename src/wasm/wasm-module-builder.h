@@ -338,6 +338,11 @@ class V8_EXPORT_PRIVATE WasmModuleBuilder : public ZoneObject {
   struct WasmGlobal {
     MOVE_ONLY_NO_DEFAULT_CONSTRUCTOR(WasmGlobal);
 
+    WasmGlobal(ValueType type_, bool mutability_, WasmInitExpr init_)
+    : type(type_),
+      mutability(mutability_),
+      init(std::move(init_)) {}
+
     ValueType type;
     bool mutability;
     WasmInitExpr init;
